@@ -12,7 +12,7 @@ let dateSelection = document.querySelector('.dateSelection');
 let timeSelection = document.querySelector('.timeSelection');
 
 
-function currentTime() { // Gets the current time
+function countdown() { // Gets the current time
     let date = new Date();
     let yr = date.getFullYear(); // Returns 4-digit year
     let mth = date.getMonth(); // Returns month, 0-11
@@ -22,31 +22,41 @@ function currentTime() { // Gets the current time
     let sec = date.getSeconds();
 
     dateSelection.oninput = setCountDate; // Runs the setCountDate on input of form
+    timeSelection.oninput = setCountTime;
 
     function setCountDate() {
-        let countYr = dateSelection.value.slice(0, 4);
-        let countMth = dateSelection.value.slice(5, 7);
-        let countDy = dateSelection.value.slice(8, 10);
-        // alert(countDy); Used alert to test if the values were returning properly
-        yrOutput.innerHTML = `${countYr - yr}`; // If statument that removes the s if === to 1
-        mthOutput.innerHTML = `${countMth - (mth + 1)}`; // Added 1 to make it a 1-12 range
-        dyOutput.innerHTML = `${countDy - dy} days`;
+        return dateSelection.value;
+    }
+    function setCountTime() {
+        return timeSelection.value;
     }
 
-    // when a cange happens in the form, set the values to subtract
+    let countYr = setCountDate().slice(0, 4);
+    let countMth = setCountDate().slice(5, 7);
+    let countDy = setCountDate().slice(8, 10);
+    yrOutput.innerHTML = `${countYr - yr}`;
+    mthOutput.innerHTML = `${countMth - (mth + 1)}`; // Added 1 to make it a 1-12 range
+    dyOutput.innerHTML = `${countDy - dy} days`;
 
-    
-
-    /*
-    yrOutput.innerHTML = `${countYr - yr}`; // If statument that removes the s if === to 1
-    mthOutput.innerHTML = `${mth + 1}`; // Added 1 to make it a 1-12 range
-    dyOutput.innerHTML = `${dy} days`;
-    */
-    hrOutput.innerHTML = `${hr}`;
-    minOutput.innerHTML = `${min}`;
-    secOutput.innerHTML = `${sec}`;
+    let countHr = setCountTime().slice(0, 2);
+    let countMin = setCountTime().slice(3, 5);
+    // let countSec = setCountTime().slice(8, 10);
+    hrOutput.innerHTML = `${countHr - hr}`;
+    minOutput.innerHTML = `${countMin - min}`;
+    // secOutput.innerHTML = `${sec}`;
 }
 
 
-setInterval(currentTime, 250); // Checks the time remaining every 250ms
-// A function to: add zero; to make year, month, day invisible if === 0
+setInterval(countdown, 250); // Checks the time remaining every 250ms
+// A function to: add zero; to make year, month, day invisible if === 0, remove s from day(s)
+
+
+
+/*
+Todo:
+---make the default 0 when no input yet
+---make it so you can only select times in the future
+---add seconds functionality
+
+
+*/
