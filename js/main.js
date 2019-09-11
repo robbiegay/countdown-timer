@@ -21,26 +21,32 @@ function currentTime() { // Gets the current time
     let min = date.getMinutes();
     let sec = date.getSeconds();
 
-    // let countYr = 
+    dateSelection.oninput = setCountDate; // Runs the setCountDate on input of form
 
-    yrOutput.innerHTML = `${yr}`;
+    function setCountDate() {
+        let countYr = dateSelection.value.slice(0, 4);
+        let countMth = dateSelection.value.slice(5, 7);
+        let countDy = dateSelection.value.slice(8, 10);
+        // alert(countDy); Used alert to test if the values were returning properly
+        yrOutput.innerHTML = `${countYr - yr}`; // If statument that removes the s if === to 1
+        mthOutput.innerHTML = `${countMth - (mth + 1)}`; // Added 1 to make it a 1-12 range
+        dyOutput.innerHTML = `${countDy - dy} days`;
+    }
+
+    // when a cange happens in the form, set the values to subtract
+
+    
+
+    /*
+    yrOutput.innerHTML = `${countYr - yr}`; // If statument that removes the s if === to 1
     mthOutput.innerHTML = `${mth + 1}`; // Added 1 to make it a 1-12 range
-    dyOutput.innerHTML = `${dy}`;
+    dyOutput.innerHTML = `${dy} days`;
+    */
     hrOutput.innerHTML = `${hr}`;
     minOutput.innerHTML = `${min}`;
     secOutput.innerHTML = `${sec}`;
 }
 
-// Gets the inputted time
-
-
-
-
-
-
-
 
 setInterval(currentTime, 250); // Checks the time remaining every 250ms
-
-
-// need to do add event listener 'change'
+// A function to: add zero; to make year, month, day invisible if === 0
