@@ -25,6 +25,14 @@ p {
     color: white;
 }
 
+.instructions {
+    font-size: 20px;
+    border: none;
+    border-radius: 0;
+    background-color: rgba(5, 242, 242, 0);
+    color: black;
+}
+
 .dy, .mth, .yr {
     color: green;
 }
