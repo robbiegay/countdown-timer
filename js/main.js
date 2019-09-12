@@ -88,7 +88,7 @@ function countdown() {
 
     if (sec === 0 && min === 0 && hr === 0 && dy === 0 && yr === 0) {
         countdownBox.innerHTML = "DONE!!!";
-        btn.setAttribute('class', 'done');
+        // btn.setAttribute('class', 'done'); Part of trying to get text to blink
         clearInterval(esc);
     }
 
@@ -98,17 +98,21 @@ function countdown() {
 }
 
 let esc = setInterval(countdown, 1); // Checks the time remaining every 1ms
-setInterval(colorChange, 1000);
+
+
+
+/* Attemped to get the "done" text to blink when done
+setInterval(colorChange, 500);
 
 function colorChange() {
-    if (btn.getAttribute('class') === 'done') {
-        countdownBox.setAttribute('style', 'color: green;');
+    if (true) {//(btn.getAttribute('class') === 'done') {
+        dateSelection.setAttribute('style', 'color: green;');  //countdownBox
         setTimeout(colorChange, 500);
-        countdownBox.setAttribute('style', 'color: red;');
+        dateSelection.setAttribute('style', 'color: red;');
         setTimeout(colorChange, 500);
     }
 }
-
+*/
 
 
 
