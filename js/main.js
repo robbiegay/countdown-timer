@@ -16,6 +16,10 @@ let instr = document.querySelector('.instructions');
 let inM = document.querySelector('.inM');
 let outM = document.querySelector('.outM');
 
+let countdownBox = document.querySelector('.countdown');
+
+let btn = document.querySelector('.update');
+
 
 
 function countdown() {
@@ -24,9 +28,27 @@ function countdown() {
     let currentMili = date.getTime();
     inM.innerHTML = currentMili; // This gives us the current time in milliseconds
 
+    // Sets the minimum input date to be today or future
+    let yrMin = date.getFullYear(); // Returns 4-digit year
+    let mthMin = date.getMonth(); // Returns month, 0-11
+    let dyMin = date.getDate(); // Returns day of the month 1-31
+    dateSelection.setAttribute('min', (yrMin + "-" + addZero((mthMin + 1)) + "-" + dyMin)); // Adds a zero or else Sept = 9 and wouldn't work
+
+    // timeSelection.setAttribute('min', `${19}:${30}`); Can't do this b/c time must be allowed for other days. 
+    // Workaround = to have an if statement to make it dont if yr and day = 0 and others = posotive
+
+    function addZero(x) {
+        if (x < 10) {
+            x = `0${x}`;
+            return x;
+        } else {
+            return x;
+        }
+    }
+
     // Gets the target date and time
 
-    let btn = document.querySelector('.update');
+    
     btn.addEventListener('click', setTargetDate);
     function setTargetDate() { // output date total milisec
         let targetDate = new Date(dateSelection.value);
@@ -42,7 +64,7 @@ function countdown() {
         outM.innerHTML = output;
     }
 
-    let countdownBox = document.querySelector('.countdown');
+    //let countdownBox = document.querySelector('.countdown');
 
     let cd = inM.textContent - outM.textContent;
     let secConv = Math.round(cd / 1000);
@@ -57,24 +79,48 @@ function countdown() {
     let yr = yrConv;
 
 
-    
-    
-    countdownBox.innerHTML = `${Math.abs(yr)}y:${Math.abs(dy)}d:${Math.abs(hr)}:${Math.abs(min)}:${Math.abs(sec)}`;
+    // Places the countdown in the countdown box
+    countdownBox.innerHTML = `${Math.abs(yr)}y:${Math.abs(dy)}d:${Math.abs(hr)}:${Math.abs(min)}:${Math.abs(sec)}`; 
+    // Abs = turn the negative 'counting' numbers positive
 
+
+    if (sec === 0 && min === 0 && hr === 0 && dy === 0 && yr === 0) {
+        countdownBox.innerHTML = "DONE!!!";
+        btn.setAttribute('class', 'done');
+        clearInterval(esc);
+    }
 
     let diff = document.querySelector('.diff');
     diff.innerHTML = inM.textContent - outM.textContent;
 
+    
 
 
 
+    
 
 
 }
 
-setInterval(countdown, 1); // Checks the time remaining every 250ms
+let esc = setInterval(countdown, 1); // Checks the time remaining every 1ms
+setInterval(colorChange, 1000);
 
+function colorChange() {
+    if (btn.getAttribute('class') === 'done') {
+        countdownBox.setAttribute('style', 'color: green;');
+        setTimeout(colorChange, 500);
+        countdownBox.setAttribute('style', 'color: red;');
+        setTimeout(colorChange, 500);
+    }
+}
 
+/*
+function green() {
+    countdownBox.setAttribute('style', 'color: green;');
+}
+function red() {
+    countdownBox.setAttribute('style', 'color: red;');
+}*/
 
 
 

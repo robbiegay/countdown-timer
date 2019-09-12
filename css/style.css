@@ -13,6 +13,7 @@ p {
     display: inline-block;
     padding: 10px;
     margin-bottom: 2px;
+    margin: 20px;
     
     /* Style */
     font-size: 100px;
@@ -35,4 +36,19 @@ p {
 
 .dy, .mth, .yr {
     color: green;
+}
+
+.instructions, .inM, .outM, .diff {
+    visibility: hidden;
+}
+
+form {
+    font-family: 'VT323', monospace;
+}
+
+button {
+    font-family: 'VT323', monospace;
+    font-size: 15px;
+    display: inline-block;
+    margin: 10px;
 }

@@ -12,16 +12,19 @@
         <article>
             <p class="countdown"></p>
             <form>
-                Enter a date to count down to:
+                Enter a date to countdown to: 
                 <input type="date" name="dateInput" min="" class="dateSelection"> <!-- Figure out a way to set the min to the current time -->
-                Enter a time to count down to:
+                Enter a time to countdown to: 
                 <input type="time" name="timeInput" class="timeSelection">
             </form>
             <button type="button" class="update">Update</button>
-            <p class="instructions"></p>
-            <p class="inM"></p>
-            <p class="outM"></p>
-            <p class="diff"></p>
+            <!-- Objects used for visually seeing countdown timer -->
+            <div>
+                <p class="instructions"></p>
+                <p class="inM"></p>
+                <p class="outM"></p>
+                <p class="diff"></p>
+            </div>
         </article>
 
         <script src="js/main.js"></script>
