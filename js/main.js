@@ -1,12 +1,3 @@
-let dateInput = document.querySelector('dateInput');
-let timeInput = document.querySelector('timeInput');
-
-let yrOutput = document.querySelector('.yr');
-let mthOutput = document.querySelector('.mth');
-let dyOutput = document.querySelector('.dy');
-let hrOutput = document.querySelector('.hr');
-let minOutput = document.querySelector('.min');
-let secOutput = document.querySelector('.sec');
 
 let dateSelection = document.querySelector('.dateSelection');
 let timeSelection = document.querySelector('.timeSelection');
@@ -19,6 +10,8 @@ let outM = document.querySelector('.outM');
 let countdownBox = document.querySelector('.countdown');
 
 let btn = document.querySelector('.update');
+let diff = document.querySelector('.diff');
+let alert = document.querySelector('.alert');
 
 
 
@@ -81,57 +74,78 @@ function countdown() {
 
     // Places the countdown in the countdown box
     countdownBox.innerHTML = `${Math.abs(yr)}y:${Math.abs(dy)}d:${Math.abs(hr)}:${Math.abs(min)}:${Math.abs(sec)}`; 
-    // Abs = turn the negative 'counting' numbers positive
+    if ((countdownBox.textContent === 'NaNy:NaNd:NaN:NaN:NaN') || (Math.sign(diff.textContent) === 1)) {
+        countdownBox.innerHTML = 'Please input a date and time';
+    }
+
+    if (diff.textContent <= 8.64e+7 && diff.textContent > 0) { // If the time is set to be earlier in the day, alert the user
+        alert.innerHTML = 'Opps.. Please ensure that "time" is set to a moment in the future!';
+        timeSelection.focus();
+    } else {
+        alert.innerHTML = '';
+    }
 
 
     if (sec === 0 && min === 0 && hr === 0 && dy === 0 && yr === 0) {
         countdownBox.innerHTML = "DONE!!!";
-        btn.setAttribute('class', 'done');
+        // btn.setAttribute('class', 'done'); Part of trying to get text to blink
         clearInterval(esc);
     }
 
-    let diff = document.querySelector('.diff');
-    diff.innerHTML = inM.textContent - outM.textContent;
-
-    
-
-
-
-    
+    diff.innerHTML = inM.textContent - outM.textContent;  
 
 
 }
 
 let esc = setInterval(countdown, 1); // Checks the time remaining every 1ms
-setInterval(colorChange, 1000);
+
+
+
+/* Attemped to get the "done" text to blink when done
+setInterval(colorChange, 500);
 
 function colorChange() {
-    if (btn.getAttribute('class') === 'done') {
-        countdownBox.setAttribute('style', 'color: green;');
+    if (true) {//(btn.getAttribute('class') === 'done') {
+        dateSelection.setAttribute('style', 'color: green;');  //countdownBox
         setTimeout(colorChange, 500);
-        countdownBox.setAttribute('style', 'color: red;');
+        dateSelection.setAttribute('style', 'color: red;');
         setTimeout(colorChange, 500);
     }
 }
+*/
+
+
+
+
+
+
+//get light flashing to work
+
+
+
+// Old Code
 
 /*
+let dateInput = document.querySelector('dateInput');
+let timeInput = document.querySelector('timeInput');
+
+let yrOutput = document.querySelector('.yr');
+let mthOutput = document.querySelector('.mth');
+let dyOutput = document.querySelector('.dy');
+let hrOutput = document.querySelector('.hr');
+let minOutput = document.querySelector('.min');
+let secOutput = document.querySelector('.sec');
+
+
+
+
+
 function green() {
     countdownBox.setAttribute('style', 'color: green;');
 }
 function red() {
     countdownBox.setAttribute('style', 'color: red;');
 }*/
-
-
-
-
-
-
-
-
-
-
-
 
 
 

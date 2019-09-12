@@ -8,7 +8,7 @@ article {
     text-align: center;
 }
 
-p {
+.countdown {
     /* Position */
     display: inline-block;
     padding: 10px;
@@ -42,7 +42,7 @@ p {
     visibility: hidden;
 }
 
-form {
+form, .alert {
     font-family: 'VT323', monospace;
 }
 
@@ -52,3 +52,4 @@ button {
     display: inline-block;
     margin: 10px;
 }
+
