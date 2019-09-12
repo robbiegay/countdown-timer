@@ -1,5 +1,5 @@
 html {
-    background-color: #05F2F2;
+    background-color: #E4EAF2;
 }
 
 article {
@@ -21,8 +21,8 @@ article {
     text-align: center;
     width: flex; /* Adjusts to the size of the innerHTML */
     border-radius: 30px;
-    background-color: #033E8C;
-    border: 3px dotted #8C030E;
+    background-color: #A68877;
+    border: 3px dotted black;
     color: white;
 }
 
