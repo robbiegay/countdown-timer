@@ -13,6 +13,8 @@ let btn = document.querySelector('.update');
 let diff = document.querySelector('.diff');
 let alert = document.querySelector('.alert');
 
+let rst = document.querySelector('.reset');
+
 
 
 function countdown() {
@@ -97,6 +99,7 @@ function countdown() {
     if (sec === 0 && min === 0 && hr === 0 && dy === 0 && yr === 0) {
         countdownBox.innerHTML = "DONE!!!";
         // btn.setAttribute('class', 'done'); Part of trying to get text to blink
+        rst.setAttribute('style', 'visibility: visible;');
         clearInterval(esc);
     }
 
@@ -107,12 +110,25 @@ function countdown() {
 
 let esc = setInterval(countdown, 1); // Checks the time remaining every 1ms
 
+rst.addEventListener('click', reloadPage);
+
+function reloadPage() {
+    location.reload();
+}
 
 
 
-// Add reset button, make flash when gets to zero
 
 
+
+// Add reset button
+
+/*
+
+update btn needs to change text to reset, and then change to update
+
+
+*/
 
 
 
