@@ -71,9 +71,17 @@ function countdown() {
     let yrConv = Math.floor((dyConv - dy) / 365);
     let yr = yrConv;
 
+    function addZero(x) {
+        if (x < 10) {
+            x = `0${x}`;
+            return x;
+        } else {
+            return x;
+        }
+    }
 
     // Places the countdown in the countdown box
-    countdownBox.innerHTML = `${Math.abs(yr)}y:${Math.abs(dy)}d:${Math.abs(hr)}:${Math.abs(min)}:${Math.abs(sec)}`; 
+    countdownBox.innerHTML = `${Math.abs(yr)}y:${Math.abs(dy)}d:${addZero(Math.abs(hr))}:${addZero(Math.abs(min))}:${addZero(Math.abs(sec))}`; 
     if ((countdownBox.textContent === 'NaNy:NaNd:NaN:NaN:NaN') || (Math.sign(diff.textContent) === 1)) {
         countdownBox.innerHTML = 'Please input a date and time';
     }
@@ -98,6 +106,17 @@ function countdown() {
 }
 
 let esc = setInterval(countdown, 1); // Checks the time remaining every 1ms
+
+
+
+
+// Add reset button, make flash when gets to zero
+
+
+
+
+
+
 
 
 
