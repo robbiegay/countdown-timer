@@ -13,6 +13,8 @@ let btn = document.querySelector('.update');
 let diff = document.querySelector('.diff');
 let alert = document.querySelector('.alert');
 
+let rst = document.querySelector('.reset');
+
 
 
 function countdown() {
@@ -71,9 +73,17 @@ function countdown() {
     let yrConv = Math.floor((dyConv - dy) / 365);
     let yr = yrConv;
 
+    function addZero(x) {
+        if (x < 10) {
+            x = `0${x}`;
+            return x;
+        } else {
+            return x;
+        }
+    }
 
     // Places the countdown in the countdown box
-    countdownBox.innerHTML = `${Math.abs(yr)}y:${Math.abs(dy)}d:${Math.abs(hr)}:${Math.abs(min)}:${Math.abs(sec)}`; 
+    countdownBox.innerHTML = `${Math.abs(yr)}y:${Math.abs(dy)}d:${addZero(Math.abs(hr))}:${addZero(Math.abs(min))}:${addZero(Math.abs(sec))}`; 
     if ((countdownBox.textContent === 'NaNy:NaNd:NaN:NaN:NaN') || (Math.sign(diff.textContent) === 1)) {
         countdownBox.innerHTML = 'Please input a date and time';
     }
@@ -89,6 +99,7 @@ function countdown() {
     if (sec === 0 && min === 0 && hr === 0 && dy === 0 && yr === 0) {
         countdownBox.innerHTML = "DONE!!!";
         // btn.setAttribute('class', 'done'); Part of trying to get text to blink
+        rst.setAttribute('style', 'visibility: visible;');
         clearInterval(esc);
     }
 
@@ -98,6 +109,30 @@ function countdown() {
 }
 
 let esc = setInterval(countdown, 1); // Checks the time remaining every 1ms
+
+rst.addEventListener('click', reloadPage);
+
+function reloadPage() {
+    location.reload();
+}
+
+
+
+
+
+
+// Add reset button
+
+/*
+
+update btn needs to change text to reset, and then change to update
+
+
+*/
+
+
+
+
 
 
 
